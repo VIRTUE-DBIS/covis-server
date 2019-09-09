@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+  <Properties>
+    <Property name="loggingPattern">[%d{MM-dd HH:mm:ss.SSS}][%-5level][%t] %C{1} - %msg%n</Property>
+  </Properties>
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %level %C{1} - %msg%n"/>
+      <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+    </Console>
+    <RollingFile name="File">
+      <FileName>logs/covis.log</FileName>
+      <FilePattern>logs/%d{yyyy-MM-dd-hh}-%i.log.zip</FilePattern>
+      <PatternLayout pattern="${loggingPattern}"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1000 KB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="5" />
+      <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <logger level="ERROR" name="io">
+      <AppenderRef ref="Console"/>
+    </logger>
+    <logger level="ERROR" name="org">
+      <AppenderRef ref="Console"/>
+    </logger>
+    <logger level="ERROR" name="ch">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </logger>
+    <logger level="TRACE" name="ch.unibas.dmi.dbis">
+    </logger>
+    <Root level="info"/>
+  </Loggers>
+</Configuration>
