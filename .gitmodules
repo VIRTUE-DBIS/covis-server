@@ -1,3 +1,3 @@
 [submodule "covis-proto"]
 	path = covis-proto
-	url = git@github.com:silvanheller/covis-proto.git
+	url = git@github.com:VIRTUE-DBIS/covis-proto.git
